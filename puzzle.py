@@ -89,7 +89,7 @@ def back(pos, puzzle, n):
     else:
         moves = puzzle.get_legal_moves()
         print moves
-        for move in moves:
+        moves
 
             if  not move == puzzle.pos_anterior:
                 print "MOVE", move
