@@ -55,10 +55,13 @@ int isReady(){
 }
 
 void perm(int row,int col,int n){
+
+    int i=0;int diffX,diffY,temp;
+    int r=findRow();
+    int c=findCol();
     temp=arr[r][c];
     arr[r][c]=arr[row][col];
     arr[row][col]=temp;
-    // This victory check is now below the move.
     if(n>=9){
         print();
         if(isReady())
@@ -68,9 +71,7 @@ void perm(int row,int col,int n){
         return;
     }
 
-    int i=0;int diffX,diffY,temp;
-    int r=findRow();
-    int c=findCol();
+   
     temp=arr[r][c];
     arr[r][c]=arr[row][col];
     arr[row][col]=temp;
@@ -81,10 +82,11 @@ void perm(int row,int col,int n){
             perm(diffX,diffY,n+1);
         }
     }
+
 }
 
 int main()
 {
-    perm(1,1,0);
+    perm(0,0,0);
     return 0;
 }
