@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 
 
-grid = [[8,0,6], [5,4,7], [2,3,1]] 
-goal = [[0,1,2], [3,4,5], [6,7,8]] 
-BEST_DEPTH = 35
+grid = [[0, 1,3], [4, 2, 5], [7, 8, 6]]
+
+goal = [[0,1,2], [3,4,5], [6,7,8]]
+BEST_DEPTH = 50
 
 best_moves = []
 
@@ -31,7 +32,7 @@ def get_legal_moves(pos_zero, pos_x, pos_y):
     # row, col = self.find(0)
     row, col = pos_x, pos_y
     free = []
-    
+
     if row-1 == pos_x and col == pos_y:
         free.append((-1, -1))
     else:
@@ -44,7 +45,7 @@ def get_legal_moves(pos_zero, pos_x, pos_y):
         free.append((-1, -1))
     else:
         free.append((row + 1, col))
-    
+
     if row == pos_x and col+1 == pos_y:
         free.append((-1, -1))
     else:
@@ -65,7 +66,7 @@ def valida():
         for col in range(3):
             if not grid[row][col] == goal[row][col]:
                 return False
-    return True    
+    return True
 
 def search_dfs(pos_x, pos_y, depth, played_x, played_y):
     global BEST_DEPTH
@@ -74,18 +75,18 @@ def search_dfs(pos_x, pos_y, depth, played_x, played_y):
     if depth>=BEST_DEPTH:
         # print BEST_DEPTH
         return
-    
+
     if depth:
         lista_movimentos.insert(depth-1, grid[played_x][played_y])
-    
+
     if valida():
-        print "Solution found witch %d steps \n" % depth
-        print grid
+        print("Solution found witch %d steps \n" % depth)
+        print(grid)
         BEST_DEPTH=depth;
         for i in range(depth):
             best_moves.append(lista_movimentos[i])
         return
-    
+
     # moves = get_legal_moves(pos_zero, played_x, played_y)
     x1=0
     y1=0
@@ -98,25 +99,25 @@ def search_dfs(pos_x, pos_y, depth, played_x, played_y):
 
     x1=pos_x+1
     y1=pos_y
-    
+
     x2=pos_x-1
     y2=pos_y
-    
+
     x3=pos_x
     y3=pos_y+1
-    
+
     x4=pos_x
     y4=pos_y-1
 
-    
+
     if(x1==played_x and y1==played_y):
         x1 = -1
         y1 = -1
-    
+
     if(x2==played_x and y2==played_y):
         x2 = -1
         y2 = -1
-    
+
     if(x3==played_x and y3==played_y):
         x3 = -1
         y3 = -1
@@ -124,7 +125,7 @@ def search_dfs(pos_x, pos_y, depth, played_x, played_y):
     if(x4==played_x and y4==played_y):
         x4 = -1
         y4 = -1
-    
+
     # print moves
     if (x1>=0)  and (x1 < N) and (y1>=0) and (y1 < N):
         # move((x1,y1), pos_zero)
@@ -146,7 +147,7 @@ def search_dfs(pos_x, pos_y, depth, played_x, played_y):
 
     if (x3>=0) and (x3 < N) and (y3>=0) and (y3 < N):
         grid[pos_x][pos_y]=grid[x3][y3]
-      
+
         grid[x3][y3]=0
         # print "RECURSAO"
         search_dfs(x3, y3, depth+1, pos_x,pos_y)
@@ -169,9 +170,9 @@ def main():
     # puzzle.maximo = 800
     pos = find(0)
     if not valida():
-        print "ok"
+        print("ok")
     search_dfs(pos[0], pos[1], 0, -1, -1)
-    print best_moves
+    print(best_moves)
     return
 
 
