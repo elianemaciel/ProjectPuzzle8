@@ -29,10 +29,13 @@ int isCorrect(){
 void search_dfs(int zero_x, int zero_y, int depth, int played_x, int played_y){
 	
 	if(depth>=best_depth){
+		// printf("best_depth %d\n", best_depth);
 		return;
 	}
+	// printf("pos\n");
 	
 	if(depth!=0){
+		// printf("depth %d\n", depth);
 		moves[depth-1]=grid[played_x][played_y];
 	}
 	

@@ -240,8 +240,8 @@ def main():
     print "Solved with linear distance exploring", count, "states"
     path, count = p.solve(h_linear_lsq)
     print "Solved with linear least squares exploring", count, "states"
-#    path, count = p.solve(heur_default)
-#    print "Solved with BFS-equivalent in", count, "moves"
+    path, count = p.solve(h_default)
+    print "Solved with BFS-equivalent in", count, "moves"
 
 if __name__ == "__main__":
     main()
