@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# puzzle = [[0, 1,3], [4, 2, 5], [7, 8, 6]]
+__author__ = "Eliane Maciel e Maria Carolina"
 
 import traceback
 # Matriz inicial
@@ -40,11 +40,13 @@ def display_board():
     print("-------------")
 
 def printMoviments(p):
+    """Printa a matriz"""
+
     pp = p
-    rowz=0
-    colz=0
-    rown=0
-    coln=0
+    rowz = 0
+    colz = 0
+    rown = 0
+    coln = 0
     cont = 0
     print("Puzzle inicial")
     print("-------------")
@@ -63,7 +65,7 @@ def printMoviments(p):
                 colz = col
             except:
                 pass
-        for row in range(N):  
+        for row in range(N):
             try:
                 col = pp[row].index(num)
                 rown = row
@@ -81,7 +83,8 @@ def printMoviments(p):
         print("-------------")
         print("| %i | %i | %i |" % (pp[2][0], pp[2][1], pp[2][2]))
         print("-------------")
-    
+
+
 def find(value):
     """Retorna linha e coluna onde tem o 0 na matriz"""
 
