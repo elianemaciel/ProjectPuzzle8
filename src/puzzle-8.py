@@ -3,6 +3,8 @@
 # puzzle = [[0, 1,3], [4, 2, 5], [7, 8, 6]]
 
 import traceback
+# Matriz inicial
+init =  [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
 
 # Matriz do puzzle
 puzzle = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
@@ -37,7 +39,49 @@ def display_board():
     print("| %i | %i | %i |" % (puzzle[2][0], puzzle[2][1], puzzle[2][2]))
     print("-------------")
 
+def printMoviments(p):
+    pp = p
+    rowz=0
+    colz=0
+    rown=0
+    coln=0
+    cont = 0
+    print("Puzzle inicial")
+    print("-------------")
+    print("| %i | %i | %i |" % (pp[0][0], pp[0][1], pp[0][2]))
+    print("-------------")
+    print("| %i | %i | %i |" % (pp[1][0], pp[1][1], pp[1][2]))
+    print("-------------")
+    print("| %i | %i | %i |" % (pp[2][0], pp[2][1], pp[2][2]))
+    print("-------------")
+    for num in best_moves:
+        cont += 1
+        for row in range(N):
+            try:
+                col = pp[row].index(0)
+                rowz = row
+                colz = col
+            except:
+                pass
+        for row in range(N):  
+            try:
+                col = pp[row].index(num)
+                rown = row
+                coln = col
+            except:
+                pass
+        pp[rown][coln] = 0
+        pp[rowz][colz] = num
 
+        print("Moveu o ",num," index: ",cont )
+        print("-------------")
+        print("| %i | %i | %i |" % (pp[0][0], pp[0][1], pp[0][2]))
+        print("-------------")
+        print("| %i | %i | %i |" % (pp[1][0], pp[1][1], pp[1][2]))
+        print("-------------")
+        print("| %i | %i | %i |" % (pp[2][0], pp[2][1], pp[2][2]))
+        print("-------------")
+    
 def find(value):
     """Retorna linha e coluna onde tem o 0 na matriz"""
 
@@ -195,6 +239,7 @@ def main():
             for row in range(N):
                 for col in range(N):
                     puzzle[row][col] = int(matriz[cont])
+                    init[row][col] = int(matriz[cont])
                     cont += 1
         except:
             print("Problema ao gerar matriz inicial " , traceback.print_exc())
@@ -206,6 +251,8 @@ def main():
                 solver_dfs(pos[0], pos[1], 0, -1, -1)
                 if best_moves:
                     print("Melhores Movimentos: {moves}".format(moves=best_moves))
+                    print("Caminhos:")
+                    printMoviments(init)
                 else:
                     print("Não foi possivel encontrar a solução para o puzzle com esses movimentos")
                 print("Movimentos realizados: {mov}".format(mov=len(lista_movimentos)))
